@@ -1,7 +1,5 @@
 # movies-enthusiast
 
-I'm usign this dataset: https://www.kaggle.com/code/michau96/are-popular-movies-good/input
-
 ## Setup project
 
 First create a file .env in the root of the project
