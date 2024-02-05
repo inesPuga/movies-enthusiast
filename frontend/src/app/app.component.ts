@@ -6,6 +6,8 @@ import {MoviesService} from "./services/movies.service";
 import {HttpClientModule} from "@angular/common/http";
 import {MovieCardComponent} from "./components/movie-card/movie-card.component";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
+import {MatDialog} from "@angular/material/dialog";
+import {MovieDetailsComponent} from "./components/movie-details/movie-details.component";
 
 @Component({
   selector: 'app-root',
@@ -24,7 +26,8 @@ export class AppComponent implements OnInit {
   size: number = 10; // todo : dynamic
   isLoading: boolean = false;
 
-  constructor(private readonly moviesService: MoviesService) {}
+  constructor(private readonly moviesService: MoviesService,
+              private readonly dialog: MatDialog) {}
 
   ngOnInit() {
     this.fetch();
@@ -44,6 +47,21 @@ export class AppComponent implements OnInit {
       this.page++;
       this.isLoading = false;
     })
+  }
+
+  onCardClick(movie: Movie): void {
+    this.openDialog(movie);
+  }
+
+  openDialog(movie: Movie): void {
+    const dialogRef = this.dialog.open(MovieDetailsComponent, {
+      width: '250px',
+      data: {movie: movie}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`The dialog was closed: ${result}`);
+    });
   }
 
 }

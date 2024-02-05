@@ -9,7 +9,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("public/movies")
@@ -35,9 +34,11 @@ public class MovieController {
         return movieService.findById(id);
     }
 
-    @GetMapping("/year/{year}")
-    public List<MovieEntity> findAllByYear(@PathVariable Integer year) {
-        return movieService.findAllByYear(year);
+    @GetMapping("/revenue")
+    public List<MovieEntity> findAllByYearAndOrderByRevenue(@RequestParam(required=false) Integer year, @PageableDefault(
+            page = 0,
+            size = 10) Pageable page) {
+        return movieService.findAllByYearAndOrderByRevenue(year, page);
     }
 
 }

@@ -1,4 +1,4 @@
-<div class="bg-[#282828] p-5 my-2 min-h-[36rem]">
+<div class="bg-[#282828] p-5 my-2 min-h-[36rem]" (click)="onClick(movie)">
 
   <img *ngIf="movie.imageUrl" [src]="movie.imageUrl" alt="Movie image" class="h-[25rem] w-[16.875rem]">
   <img *ngIf="!movie.imageUrl" src="/assets/default-movie.png" alt="Movie default image" class="h-[25rem] w-[16.875rem]">
