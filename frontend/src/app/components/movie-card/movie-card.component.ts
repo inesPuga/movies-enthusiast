@@ -16,10 +16,10 @@ export class MovieCardComponent {
 
   @Input({ required: true }) movie: Movie;
 
-  @Output() click: EventEmitter<Movie> = new EventEmitter();
+  @Output() clickEventEmitter: EventEmitter<number> = new EventEmitter();
 
-  onClick(movie: Movie): void {
-    this.click.emit(movie);
+  onClick(id: number): void {
+    this.clickEventEmitter.emit(id);
   }
 
 }

@@ -1,0 +1,30 @@
+<ng-container *ngIf="(movie$ | async) as movie">
+
+  <h1 mat-dialog-title class="text-3xl custom-mat-dialog-title">{{ movie.title + ' (' + movie.year + ')' }}</h1>
+
+  <div mat-dialog-content class="custom-mat-dialog-content">
+    <div>
+      <p class="text-sm text-black">{{ movie.description }}</p>
+      <div class="custom-mat-dialog-sub-content mt-5">
+        <div>
+          <h2 class="text-black font-medium">Genre</h2>
+          <p class="text-sm text-black">{{ movie.genre }}</p>
+        </div>
+        <div>
+          <h2 class="text-black font-medium">Director</h2>
+          <p class="text-sm text-black">{{ movie.director }}</p>
+        </div>
+        <div>
+          <h2 class="text-black font-medium">Revenue</h2>
+          <p class="text-sm text-black">{{ movie.revenue }} millions</p>
+        </div>
+        <div>
+          <h2 class="text-black font-medium">Score</h2>
+          <p class="text-sm text-black">{{ movie.score }} / 10</p>
+        </div>
+      </div>
+    </div>
+    <img [src]="movie.imageUrl" alt="Movie image">
+  </div>
+
+</ng-container>

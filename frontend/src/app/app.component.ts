@@ -8,11 +8,12 @@ import {MovieCardComponent} from "./components/movie-card/movie-card.component";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";
 import {MovieDetailsComponent} from "./components/movie-details/movie-details.component";
+import {InfiniteScrollModule} from "ngx-infinite-scroll";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HttpClientModule, MovieCardComponent, NgForOf, AsyncPipe, NgIf],
+  imports: [RouterOutlet, HttpClientModule, MovieCardComponent, NgForOf, AsyncPipe, NgIf, InfiniteScrollModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -33,30 +34,23 @@ export class AppComponent implements OnInit {
     this.fetch();
   }
 
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll(){
-    if(window.innerHeight+window.scrollY>=document.body.offsetHeight&&!this.isLoading){
-      this.fetch();
-    }
-  }
-
   fetch(): void {
     this.isLoading = true;
     this.moviesService.getMovies(this.page).subscribe((items) => {
       this.items.push(...items);
       this.page++;
       this.isLoading = false;
-    })
+    });
   }
 
-  onCardClick(movie: Movie): void {
-    this.openDialog(movie);
+  onCardClick(id: number): void {
+    this.openDialog(id);
   }
 
-  openDialog(movie: Movie): void {
+  openDialog(id: number): void {
     const dialogRef = this.dialog.open(MovieDetailsComponent, {
-      width: '250px',
-      data: {movie: movie}
+      width: '50%',
+      data: {id: id}
     });
 
     dialogRef.afterClosed().subscribe(result => {

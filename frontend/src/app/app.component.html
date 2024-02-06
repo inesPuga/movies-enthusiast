@@ -1,7 +1,7 @@
 <div class="pl-[1.25rem] pr-[1.25rem]">
 
-  <div class="flex flex-row flex-wrap gap-5 justify-center">
-    <app-movie-card *ngFor="let movie of items" [movie]="movie" (click)="onCardClick(movie)"></app-movie-card>
+  <div class="flex flex-row flex-wrap gap-5 justify-center" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="fetch()">
+    <app-movie-card *ngFor="let movie of items" [movie]="movie" (clickEventEmitter)="onCardClick($event)"></app-movie-card>
   </div>
 
 </div>

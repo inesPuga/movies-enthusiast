@@ -1,0 +1,16 @@
+::ng-deep .custom-mat-dialog-title {
+  font-weight: 900 !important;
+  font-size: 20px !important;
+}
+
+::ng-deep .custom-mat-dialog-content {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 16px !important;
+}
+
+::ng-deep .custom-mat-dialog-sub-content {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 5px !important;
+}

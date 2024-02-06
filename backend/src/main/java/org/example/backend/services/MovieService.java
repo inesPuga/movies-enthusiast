@@ -1,5 +1,6 @@
 package org.example.backend.services;
 
+import org.example.backend.dtos.MovieDto;
 import org.example.backend.entities.MovieEntity;
 import org.example.backend.repositories.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class MovieService {
@@ -29,6 +29,17 @@ public class MovieService {
 
     public List<MovieEntity> findAllByYearAndOrderByRevenue(Integer year, Pageable page) {
         return year != null ? movieRepository.findTop10ByYearOrderByRevenueDesc(year, page) : movieRepository.findTop10ByOrderByRevenueDesc(page);
+    }
+
+    public MovieDto buildResponse(MovieEntity movieEntity) {
+        return MovieDto
+                .builder()
+                .id(movieEntity.getId())
+                .title(movieEntity.getTitle())
+                .description(movieEntity.getDescription())
+                .year(movieEntity.getYear())
+                .imageUrl(movieEntity.getImageUrl())
+                .build();
     }
 
 }

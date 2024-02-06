@@ -1,11 +1,11 @@
-<div class="bg-[#282828] p-5 my-2 min-h-[36rem]" (click)="onClick(movie)">
+<div class="bg-[#f2f5f7] p-5 my-2 min-h-[36rem] rounded-[5px]" (click)="onClick(movie.id)">
 
   <img *ngIf="movie.imageUrl" [src]="movie.imageUrl" alt="Movie image" class="h-[25rem] w-[16.875rem]">
   <img *ngIf="!movie.imageUrl" src="/assets/default-movie.png" alt="Movie default image" class="h-[25rem] w-[16.875rem]">
 
   <div class="mt-5 w-[16.875rem]">
-    <h1 class="text-[#EEEEEE] font-medium break-normal text-base">{{movie.title + " (" + movie.year + ")"}}</h1>
-    <p class="text-[#F6F6F6] text-xs mt-2">{{ movie.description | slice: 0 : movie.description.lastIndexOf(' ', 100) }}{{ movie.description.length > 75 ? '...' : '' }}</p>
+    <h1 class="text-black font-medium break-normal text-base">{{movie.title + " (" + movie.year + ")"}}</h1>
+    <p class="text-gray-950 text-xs mt-2">{{ movie.description | slice: 0 : movie.description.lastIndexOf(' ', 100) }}{{ movie.description.length > 75 ? '...' : '' }}</p>
   </div>
 
 </div>

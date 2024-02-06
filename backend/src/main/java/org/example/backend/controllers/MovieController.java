@@ -1,5 +1,6 @@
 package org.example.backend.controllers;
 
+import org.example.backend.dtos.MovieDto;
 import org.example.backend.entities.MovieEntity;
 import org.example.backend.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,14 @@ public class MovieController {
     }
 
     @GetMapping
-    public List<MovieEntity> findAll(@PageableDefault(sort = "id",
+    public List<MovieDto> findAll(@PageableDefault(sort = "id",
             direction = Sort.Direction.ASC,
             page = 0,
             size = 10) Pageable page) {
-        return movieService.findAll(page);
+        return movieService.findAll(page)
+                .stream()
+                .map(movieService::buildResponse)
+                .toList();
     }
 
     @GetMapping("/{id}")
