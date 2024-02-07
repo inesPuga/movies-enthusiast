@@ -28,7 +28,7 @@
 </div>
 
 <div class="ml-[1.25rem] mr-[1.25rem] flex flex-row flex-wrap gap-5 justify-center py-5"
-     [infiniteScrollDisabled]="isInfiniteScrollDisable()" infiniteScroll
+     [infiniteScrollDisabled]="isViewDifferentOfAll()" infiniteScroll
      [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="fetch()">
   <app-movie-card *ngFor="let movie of items" [movie]="movie"
                   (clickEventEmitter)="onCardClick($event)"></app-movie-card>

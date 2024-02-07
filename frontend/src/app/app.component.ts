@@ -92,8 +92,7 @@ export class AppComponent implements OnInit {
     return years;
   }
 
-  isInfiniteScrollDisable(): boolean {
-    console.log(this.getFormControlValue('view'));
+  isViewDifferentOfAll(): boolean {
     return this.getFormControlValue('view') != null;
   }
 

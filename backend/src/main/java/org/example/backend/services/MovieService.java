@@ -28,10 +28,10 @@ public class MovieService {
 
         // todo : when the year is different of null the page can't be used before the filters
 
-        return movieRepository.findAll(page)
+        return movieRepository.findAllByFilters(page, year)
                 .getContent()
                 .stream()
-                .filter(movie -> year == null || Objects.equals(movie.getYear(), year))
+                // 20.filter(movie -> year == null || Objects.equals(movie.getYear(), year))
                 .map(this::buildResponse)
                 .toList();
     }
