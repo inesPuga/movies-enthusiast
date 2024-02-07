@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {Observable} from "rxjs";
 import {Movie} from "./models/Movie";
@@ -9,11 +9,14 @@ import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";
 import {MovieDetailsComponent} from "./components/movie-details/movie-details.component";
 import {InfiniteScrollModule} from "ngx-infinite-scroll";
+import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {MatFormField, MatOption, MatSelect} from "@angular/material/select";
+import {MatInput} from "@angular/material/input";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HttpClientModule, MovieCardComponent, NgForOf, AsyncPipe, NgIf, InfiniteScrollModule],
+  imports: [RouterOutlet, HttpClientModule, MovieCardComponent, NgForOf, AsyncPipe, NgIf, InfiniteScrollModule, MatSelect, MatOption, MatFormField, MatInput, ReactiveFormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -23,9 +26,14 @@ export class AppComponent implements OnInit {
 
   items: Movie[] = [];
 
-  page: number = 0; // todo : dynamic
-  size: number = 10; // todo : dynamic
+  page: number = 1;
   isLoading: boolean = false;
+
+  filtersForm = new FormGroup({
+    view: new FormControl('none'),
+    year: new FormControl('none'),
+    orderBy: new FormControl('id')
+  });
 
   constructor(private readonly moviesService: MoviesService,
               private readonly dialog: MatDialog) {}
@@ -36,7 +44,12 @@ export class AppComponent implements OnInit {
 
   fetch(): void {
     this.isLoading = true;
-    this.moviesService.getMovies(this.page).subscribe((items) => {
+    this.moviesService.getMovies(this.page,
+      this.getFormControlValue('orderBy').split('-')[0],
+      this.getFormControlValue('orderBy').split('-')[1],
+      parseInt(this.getFormControlValue('year')),
+      parseInt(this.getFormControlValue('view')?.split('-')[1]),
+      ).subscribe((items) => {
       this.items.push(...items);
       this.page++;
       this.isLoading = false;
@@ -56,6 +69,32 @@ export class AppComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`The dialog was closed: ${result}`);
     });
+  }
+
+  onChange(): void {
+    this.page = 0;
+    this.items = [];
+    this.fetch();
+  }
+
+  getFormControlValue(formControlName: string) {
+    if(this.filtersForm.get(formControlName)?.value == 'none') {
+      return null;
+    }
+    return this.filtersForm.get(formControlName)?.value;
+  }
+
+  getYearRange(start: number, end: number): number[] {
+    const years = [];
+    for (let i = start; i <= end; i++) {
+      years.push(i);
+    }
+    return years;
+  }
+
+  isInfiniteScrollDisable(): boolean {
+    console.log(this.getFormControlValue('view'));
+    return this.getFormControlValue('view') != null;
   }
 
 }

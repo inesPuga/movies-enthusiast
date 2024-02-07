@@ -1,5 +1,6 @@
 package org.example.backend.controllers;
 
+import jakarta.annotation.Nullable;
 import org.example.backend.dtos.MovieDto;
 import org.example.backend.entities.MovieEntity;
 import org.example.backend.services.MovieService;
@@ -23,26 +24,19 @@ public class MovieController {
     }
 
     @GetMapping
-    public List<MovieDto> findAll(@PageableDefault(sort = "id",
+    public List<MovieDto> findAll(@PageableDefault(
+            sort = "id",
             direction = Sort.Direction.ASC,
             page = 0,
-            size = 10) Pageable page) {
-        return movieService.findAll(page)
-                .stream()
-                .map(movieService::buildResponse)
-                .toList();
+            size = 10) Pageable page,
+                                  @RequestParam(required = false) Integer year,
+                                  @RequestParam(required = false) Integer top) {
+        return movieService.findAll(page, year, top);
     }
 
     @GetMapping("/{id}")
     public MovieEntity findById(@PathVariable Integer id) throws Exception {
         return movieService.findById(id);
-    }
-
-    @GetMapping("/revenue")
-    public List<MovieEntity> findAllByYearAndOrderByRevenue(@RequestParam(required=false) Integer year, @PageableDefault(
-            page = 0,
-            size = 10) Pageable page) {
-        return movieService.findAllByYearAndOrderByRevenue(year, page);
     }
 
 }
