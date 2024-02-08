@@ -20,18 +20,15 @@ public class MovieService {
         this.movieRepository = movieRepository;
     }
 
-    public List<MovieDto> findAll(Pageable page, Integer year, Integer top) {
+    public List<MovieDto> findAll(Pageable page, Integer year, Integer top, String title) {
 
         if(top != null) {
             page = PageRequest.of(0, top, page.getSort());
         }
 
-        // todo : when the year is different of null the page can't be used before the filters
-
-        return movieRepository.findAllByFilters(page, year)
+        return movieRepository.findAllByFilters(page, year, title)
                 .getContent()
                 .stream()
-                // 20.filter(movie -> year == null || Objects.equals(movie.getYear(), year))
                 .map(this::buildResponse)
                 .toList();
     }

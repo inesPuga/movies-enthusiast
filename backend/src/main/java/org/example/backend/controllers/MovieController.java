@@ -31,8 +31,9 @@ public class MovieController {
             page = 0,
             size = 10) Pageable page,
                                   @RequestParam(required = false) Integer year,
-                                  @RequestParam(required = false) Integer top) {
-        return movieService.findAll(page, year, top);
+                                  @RequestParam(required = false) Integer top,
+                                  @RequestParam(required = false) String title) {
+        return movieService.findAll(page, year, top, title);
     }
 
     @GetMapping("/{id}")

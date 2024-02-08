@@ -1,28 +1,33 @@
 <div class="bg-[#f2f5f7] w-full">
-  <form class="flex flex-row justify-end items-center p-[1.25rem] gap-14" [formGroup]="filtersForm">
+  <form class="flex flex-row items-center p-[1.25rem] gap-14 w-full justify-between" [formGroup]="filtersForm">
     <div class="flex flex-row items-center gap-1">
-      <p>View:</p>
-      <select class="custom-select" required formControlName="view" (change)="onChange()">
-        <option value="none">All</option>
-        <option value="top-10">Top 10</option>
-      </select>
+      <input class="border border-black" formControlName="search" (keyup)="onChange()">
     </div>
-    <div class="flex flex-row items-center gap-1">
-      <p>Year:</p>
-      <select class="custom-select" required formControlName="year" (change)="onChange()">
-        <option value="none">All</option>
-        <option *ngFor="let year of getYearRange(1991, 2016)" [value]="year">{{year}}</option>
-      </select>
-    </div>
-    <div class="flex flex-row items-center gap-1">
-      <p>Order by:</p>
-      <select class="custom-select" required formControlName="orderBy" (change)="onChange()">
-        <option value="id">Relevance</option>
-        <option value="revenue-asc">Revenue (Ascending order)</option>
-        <option value="revenue-desc">Revenue (Descending order)</option>
-        <option value="year-asc">Year (Ascending order)</option>
-        <option value="year-desc">Year (Descending order)</option>
-      </select>
+    <div class="flex flex-row gap-5">
+      <div class="flex flex-row items-center gap-1">
+        <p>View:</p>
+        <select class="custom-select" required formControlName="view" (change)="onChange()">
+          <option value="none">All</option>
+          <option value="top-10">Top 10</option>
+        </select>
+      </div>
+      <div class="flex flex-row items-center gap-1">
+        <p>Year:</p>
+        <select class="custom-select" required formControlName="year" (change)="onChange()">
+          <option value="none">All</option>
+          <option *ngFor="let year of getYearRange(1991, 2016)" [value]="year">{{year}}</option>
+        </select>
+      </div>
+      <div class="flex flex-row items-center gap-1">
+        <p>Order by:</p>
+        <select class="custom-select" required formControlName="orderBy" (change)="onChange()">
+          <option value="id">Relevance</option>
+          <option value="revenue-asc">Revenue (Ascending order)</option>
+          <option value="revenue-desc">Revenue (Descending order)</option>
+          <option value="year-asc">Year (Ascending order)</option>
+          <option value="year-desc">Year (Descending order)</option>
+        </select>
+      </div>
     </div>
   </form>
 </div>

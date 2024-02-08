@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
   isLoading: boolean = false;
 
   filtersForm = new FormGroup({
+    search: new FormControl(''),
     view: new FormControl('none'),
     year: new FormControl('none'),
     orderBy: new FormControl('id')
@@ -49,6 +50,7 @@ export class AppComponent implements OnInit {
       this.getFormControlValue('orderBy').split('-')[1],
       parseInt(this.getFormControlValue('year')),
       parseInt(this.getFormControlValue('view')?.split('-')[1]),
+      this.getFormControlValue('search')
       ).subscribe((items) => {
       this.items.push(...items);
       this.page++;

@@ -24,7 +24,8 @@
         </div>
       </div>
     </div>
-    <img [src]="movie.imageUrl" alt="Movie image">
+    <img *ngIf="movie.imageUrl" [src]="movie.imageUrl" alt="Movie image">
+    <img *ngIf="!movie.imageUrl" src="/assets/default-movie.png" alt="Movie default image">
   </div>
 
 </ng-container>
