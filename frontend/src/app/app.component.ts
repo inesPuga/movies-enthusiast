@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {Observable} from "rxjs";
+import {debounceTime, distinctUntilChanged, Observable} from "rxjs";
 import {Movie} from "./models/Movie";
 import {MoviesService} from "./services/movies.service";
 import {HttpClientModule} from "@angular/common/http";
@@ -51,11 +51,15 @@ export class AppComponent implements OnInit {
       parseInt(this.getFormControlValue('year')),
       parseInt(this.getFormControlValue('view')?.split('-')[1]),
       this.getFormControlValue('search')
-      ).subscribe((items) => {
-      this.items.push(...items);
-      this.page++;
-      this.isLoading = false;
-    });
+      )
+      .pipe(
+        debounceTime(500)
+      )
+      .subscribe((items) => {
+        this.items.push(...items);
+        this.page++;
+        this.isLoading = false;
+      });
   }
 
   onCardClick(id: number): void {
