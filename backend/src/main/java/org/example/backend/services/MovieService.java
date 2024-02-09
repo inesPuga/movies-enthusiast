@@ -26,6 +26,10 @@ public class MovieService {
             page = PageRequest.of(0, top, page.getSort());
         }
 
+        if(title != null) {
+            title = title.toLowerCase();
+        }
+
         return movieRepository.findAllByFilters(page, year, title)
                 .getContent()
                 .stream()
