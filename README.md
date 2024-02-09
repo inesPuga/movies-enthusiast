@@ -45,6 +45,15 @@ Now, you can run the backend: backend/src/main/java/org/example/backend/ApiAppli
 Go the frontend folder, then run the ```npm run start```
 The frontend (Angular CLI) requires a minimum Node.js version of v18.13
 
+## Solved problems
+
+```
+Error: Could not find or load main class org.example.backend.ApiApplication 
+Caused by: java.lang.ClassNotFoundException: org.example.backend.ApiApplication
+```
+
+Go to the maven backend settings & click on install
+
 ## Product solution
 
 1. Movies list
@@ -65,13 +74,3 @@ The frontend (Angular CLI) requires a minimum Node.js version of v18.13
 
 5. Movie details
 <img width="1800" alt="Screenshot 2024-02-09 at 08 04 06" src="https://github.com/inesPuga/movies-enthusiast/assets/95829292/ef0c30af-cb4c-4562-9281-b5191c2700ff">
-
-
-## Solved problems
-
-```
-Error: Could not find or load main class org.example.backend.ApiApplication 
-Caused by: java.lang.ClassNotFoundException: org.example.backend.ApiApplication
-```
-
-Go to the maven backend settings & click on install
