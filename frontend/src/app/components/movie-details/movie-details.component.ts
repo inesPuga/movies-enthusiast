@@ -12,6 +12,7 @@ import {Observable} from "rxjs";
 import {MoviesService} from "../../services/movies.service";
 import {AsyncPipe, NgIf} from "@angular/common";
 import {MatFormField} from "@angular/material/form-field";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'app-movie-details',
@@ -23,7 +24,8 @@ import {MatFormField} from "@angular/material/form-field";
     MatButton,
     NgIf,
     AsyncPipe,
-    MatFormField
+    MatFormField,
+    MatIcon
   ],
   templateUrl: './movie-details.component.html',
   styleUrl: './movie-details.component.css'

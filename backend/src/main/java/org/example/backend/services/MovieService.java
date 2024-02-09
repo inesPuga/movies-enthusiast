@@ -44,6 +44,7 @@ public class MovieService {
                 .title(movieEntity.getTitle())
                 .description(movieEntity.getDescription())
                 .year(movieEntity.getYear())
+                .revenue(movieEntity.getRevenue())
                 .imageUrl(movieEntity.getImageUrl())
                 .build();
     }

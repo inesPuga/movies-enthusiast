@@ -1,6 +1,9 @@
 <ng-container *ngIf="(movie$ | async) as movie">
 
-  <h1 mat-dialog-title class="text-3xl custom-mat-dialog-title">{{ movie.title + ' (' + movie.year + ')' }}</h1>
+  <div class="flex flex-row items-center justify-between">
+    <h1 mat-dialog-title class="text-3xl custom-mat-dialog-title">{{ movie.title + ' (' + movie.year + ')' }}</h1>
+    <mat-icon (click)="close()" class="mr-[24px] cursor-pointer">close</mat-icon>
+  </div>
 
   <div mat-dialog-content class="custom-mat-dialog-content">
     <div>
@@ -16,7 +19,7 @@
         </div>
         <div>
           <h2 class="text-black font-medium">Revenue</h2>
-          <p class="text-sm text-black">{{ movie.revenue }} millions</p>
+          <p class="text-sm text-black">{{ movie.revenue }} million dollars</p>
         </div>
         <div>
           <h2 class="text-black font-medium">Score</h2>

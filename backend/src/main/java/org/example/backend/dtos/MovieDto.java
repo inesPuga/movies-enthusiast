@@ -10,5 +10,6 @@ public class MovieDto {
     private String title;
     private String description;
     private Integer year;
+    private Double revenue;
     private String imageUrl;
 }
