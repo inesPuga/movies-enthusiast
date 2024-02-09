@@ -1,5 +1,7 @@
 # movies-enthusiast
 
+This project consists of listing some films and is made with Angular and Spring.
+
 ## Setup project
 
 1. Run the services in docker-compose.yml. Here's how to create a PostgreSQL container for the database.
