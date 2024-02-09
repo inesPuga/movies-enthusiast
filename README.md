@@ -1,6 +1,6 @@
 # movies-enthusiast
 
-This project consists of listing some films and is made with Angular and Spring.
+This project consists of listing some films and is made with Angular, Spring and PostgreSQL.
 
 ## Setup project
 
