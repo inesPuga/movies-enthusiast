@@ -92,7 +92,7 @@ export class AppComponent implements OnInit {
 
   getYearRange(start: number, end: number): number[] {
     const years = [];
-    for (let i = start; i <= end; i++) {
+    for (let i = end; i >= start; i--) {
       years.push(i);
     }
     return years;

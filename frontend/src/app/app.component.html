@@ -1,7 +1,7 @@
 <div class="bg-[#f2f5f7] w-full">
   <form class="flex flex-row items-center p-[1.25rem] gap-14 w-full justify-between" [formGroup]="filtersForm">
     <div class="flex flex-row items-center gap-1">
-      <input class="border border-black" formControlName="search" (keyup)="onChange()" placeholder="Search by name...">
+      <input class="border border-black p-1" formControlName="search" (keyup)="onChange()" placeholder="Search by name...">
     </div>
     <div class="flex flex-row gap-5">
       <div class="flex flex-row items-center gap-1">
@@ -15,7 +15,7 @@
         <p>Year:</p>
         <select class="custom-select" required formControlName="year" (change)="onChange()">
           <option value="none">All</option>
-          <option *ngFor="let year of getYearRange(1991, 2016)" [value]="year">{{year}}</option>
+          <option *ngFor="let year of getYearRange(1971, 2016)" [value]="year">{{year}}</option>
         </select>
       </div>
       <div class="flex flex-row items-center gap-1">

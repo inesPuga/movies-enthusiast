@@ -1,4 +1,4 @@
-<div class="bg-[#f2f5f7] p-5 my-2 min-h-[36rem] rounded-[5px]" (click)="onClick(movie.id)">
+<div class="bg-[#f2f5f7] hover:bg-[#d9dcde] p-5 my-2 min-h-[36rem] rounded-[5px] cursor-pointer" (click)="onClick(movie.id)">
 
   <img *ngIf="movie.imageUrl" [src]="movie.imageUrl" alt="Movie image" class="h-[25rem] w-[16.875rem]">
   <img *ngIf="!movie.imageUrl" src="/assets/default-movie.png" alt="Movie default image" class="h-[25rem] w-[16.875rem]">
